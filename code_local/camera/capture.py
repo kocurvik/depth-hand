@@ -58,8 +58,8 @@ class DetCanvas:
         fig, _ = mpplot.subplots(nrows=1, ncols=2, figsize=(2 * 6, 1 * 6))
         ax1 = mpplot.subplot(1, 2, 1)
         ax1.set_axis_off()
-        ax1.set_xlim(0, 640)
-        ax1.set_ylim(480, 0)
+        ax1.set_xlim(0, caminfo.image_size[1])
+        ax1.set_ylim(caminfo.image_size[0], 0)
         ax2 = mpplot.subplot(1, 2, 2)
         ax2.set_axis_off()
         # ax3 = mpplot.subplot(1, 3, 3)
@@ -71,7 +71,7 @@ class DetCanvas:
         # im1 = ax1.imshow(
         #     np.zeros(caminfo.image_size, dtype=np.float),
         #     vmin=0., vmax=1., cmap=mpplot.cm.bone_r)
-        im2 = ax2.imshow(np.zeros([480, 640, 3], dtype=np.uint8))
+        im2 = ax2.imshow(np.zeros(caminfo.image_size, dtype=np.uint8))
         # im3 = ax3.imshow(
         #     np.zeros((128, 128), dtype=np.float),
         #     vmin=0., vmax=1., cmap=mpplot.cm.bone_r)
@@ -369,6 +369,12 @@ if __name__ == '__main__':
                 ## FetchHands17!! {
                 # cam.caminfo = ARGS.data_inst
                 ## }
+                cap = capture(ARGS, cam)
+                test_camera(cap)
+                cap.capture_loop()
+        elif ARGS.use_zed:
+            from camera.zed_cam import ZedCam
+            with ZedCam(ARGS) as cam:
                 cap = capture(ARGS, cam)
                 test_camera(cap)
                 cap.capture_loop()

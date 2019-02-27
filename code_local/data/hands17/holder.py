@@ -8,7 +8,7 @@ import numpy as np
 from colour import Color
 import progressbar
 import h5py
-from .ops import ops as dataops
+# from .ops import ops as dataops
 from .io import io as dataio
 from . import provider as datapro
 from utils.iso_boxes import iso_cube

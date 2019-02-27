@@ -194,6 +194,10 @@ class args_holder:
         self.parser.add_argument(
             '--save_det', default=False,
             help='save detection results')
+        self.parser.add_argument(
+            '--use_zed', default=False,
+            help='use Zed camera')
+
 
     def make_new_log(self):
         self.args.log_dir = os.path.join(self.args.out_dir, 'log')
